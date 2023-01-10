@@ -22,6 +22,7 @@ app.use(bodyParser.json());
       schema: await buildSchema({
         resolvers: [UserResolver],
       }),
+      context: ({ req, res }) => ({ req, res }),
     });
 
     await mongoose.connect(process.env.MONGODB_URL!);
