@@ -1,6 +1,6 @@
-import { Schema, Types, model } from "mongoose";
+import { Schema, Types, model, Document } from "mongoose";
 
-export interface IAuthUser {
+export interface IAuthUser extends Document {
   password: string;
   email: string;
   id?: Types.ObjectId;

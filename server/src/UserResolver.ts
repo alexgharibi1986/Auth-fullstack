@@ -44,9 +44,9 @@ export class UserResolver {
     @Arg("password") password: string,
     @Ctx() { res }: Context
   ): Promise<LoginResponse> {
-    const user = (await AuthUsers.findOne({
+    const user = await AuthUsers.findOne({
       email: email,
-    })) as any as IAuthUser;
+    });
 
     if (!user) {
       throw new Error("Invalid Login");
