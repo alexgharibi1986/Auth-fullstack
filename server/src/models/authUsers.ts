@@ -3,6 +3,7 @@ import { Schema, Types, model, Document } from "mongoose";
 export interface IAuthUser extends Document {
   password: string;
   email: string;
+  tokenVersion: number;
   id?: Types.ObjectId;
 }
 

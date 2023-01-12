@@ -10,7 +10,9 @@ import AuthUsers from "./models/authUsers";
 import { hash, compare } from "bcryptjs";
 import { LoginResponse, Users } from "./Types/Users";
 import { Context } from "./Types/Context";
-import { createRefreshToken, createAccessToken, isAuth } from "./util/auth";
+import { isAuth } from "./middleware/isAuth";
+import { createRefreshToken, createAccessToken } from "./util/auth";
+import { sendRefreshToken } from "./util/sendRefreshToken";
 
 @Resolver()
 export class UserResolver {
@@ -73,9 +75,7 @@ export class UserResolver {
 
     //login successfully
 
-    res.cookie("awsj", createRefreshToken(user), {
-      httpOnly: true,
-    });
+    sendRefreshToken(res, createRefreshToken(user));
 
     return {
       accessToken: createAccessToken(user),

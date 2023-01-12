@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import { createAccessToken } from "../util/auth";
+import { createAccessToken, createRefreshToken } from "../util/auth";
 import AuthUsers from "../models/authUsers";
+import { sendRefreshToken } from "../util/sendRefreshToken";
 
 export const refreshToken = async (req: Request, res: Response) => {
   const token = req.cookies.awsj;
@@ -27,6 +28,8 @@ export const refreshToken = async (req: Request, res: Response) => {
   if (!user) {
     return res.send({ ok: false, accessToken: "" });
   }
+
+  sendRefreshToken(res, createRefreshToken(user));
 
   return res.send({ ok: true, accessToken: createAccessToken(user) });
 };
