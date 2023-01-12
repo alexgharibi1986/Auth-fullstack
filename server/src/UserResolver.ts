@@ -1,9 +1,9 @@
 import { Resolver, Query, Mutation, Arg, Ctx } from "type-graphql";
-import AuthUsers, { IAuthUser } from "./models/authUsers";
+import AuthUsers from "./models/authUsers";
 import { hash, compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
 import { LoginResponse, Users } from "./Types/Users";
 import { Context } from "./Types/Context";
+import { createRefreshToken, createAccessToken } from "./util/auth";
 
 @Resolver()
 export class UserResolver {
@@ -60,22 +60,12 @@ export class UserResolver {
 
     //login successfully
 
-    res.cookie(
-      "awsj",
-      sign({ userId: user.id }, process.env.REFRESHTOKEN_SECRET!, {
-        expiresIn: "7d",
-      }),
-      {
-        httpOnly: true,
-      }
-    );
+    res.cookie("awsj", createRefreshToken(user), {
+      httpOnly: true,
+    });
 
     return {
-      accessToken: sign(
-        { userId: user.id, email: user.email },
-        process.env.ACCESSTOKEN_SECRET!,
-        { expiresIn: "10m" }
-      ),
+      accessToken: createAccessToken(user),
     };
   }
 }
