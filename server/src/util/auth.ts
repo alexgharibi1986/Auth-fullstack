@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken";
-import { IAuthUser } from "src/models/authUsers";
+import { IAuthUser } from "../models/authUsers";
 import { MiddlewareFn } from "type-graphql";
 import { verify } from "jsonwebtoken";
 import { Context } from "../Types/Context";
@@ -30,7 +30,6 @@ export const isAuth: MiddlewareFn<Context> = ({ context }, next) => {
     const paylaod = verify(token, process.env.ACCESSTOKEN_SECRET!);
     context.payload = paylaod as { userId: string };
   } catch (err) {
-    console.log(err);
     throw new Error("not authenticated!!");
   }
 

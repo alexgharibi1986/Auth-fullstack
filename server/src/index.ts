@@ -7,6 +7,8 @@ import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./UserResolver";
 import * as dotenv from "dotenv";
+import { refreshToken } from "./controllers/refreshToken";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -15,6 +17,9 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.post("/token_refresh", refreshToken);
 
 (async () => {
   try {
