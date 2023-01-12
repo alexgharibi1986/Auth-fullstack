@@ -1,15 +1,28 @@
-import { Resolver, Query, Mutation, Arg, Ctx } from "type-graphql";
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Arg,
+  Ctx,
+  UseMiddleware,
+} from "type-graphql";
 import AuthUsers from "./models/authUsers";
 import { hash, compare } from "bcryptjs";
 import { LoginResponse, Users } from "./Types/Users";
 import { Context } from "./Types/Context";
-import { createRefreshToken, createAccessToken } from "./util/auth";
+import { createRefreshToken, createAccessToken, isAuth } from "./util/auth";
 
 @Resolver()
 export class UserResolver {
   @Query(() => String)
   alex() {
-    return "first one";
+    return "Test";
+  }
+
+  @Query(() => String)
+  @UseMiddleware(isAuth)
+  authUserLists(@Ctx() { payload }: Context) {
+    return `Auth routes test, userId: ${payload!.userId}`;
   }
 
   @Query(() => [Users])
