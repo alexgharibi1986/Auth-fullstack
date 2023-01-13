@@ -21,8 +21,6 @@ const Login: FC = () => {
         },
       });
 
-      console.log(response);
-
       resetForm();
     },
   });
