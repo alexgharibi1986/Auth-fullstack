@@ -1,14 +1,19 @@
-import { useAlexTestQuery } from "./generated/graphql";
+import { FC } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
-function App() {
-  const { data, loading } = useAlexTestQuery();
-
-  if (loading || !data) {
-    return <div>loading</div>;
-  }
-
-  console.log(data.alex);
-  return <div>helooooo</div>;
-}
+const App: FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
