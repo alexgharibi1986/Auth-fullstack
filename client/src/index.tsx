@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <ApolloProvider client={apolloClient}>
-    <AuthProvider>
+  <AuthProvider>
+    <ApolloProvider client={apolloClient}>
       <App />
-    </AuthProvider>
-  </ApolloProvider>
+    </ApolloProvider>
+  </AuthProvider>
 );
