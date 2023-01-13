@@ -5,7 +5,7 @@ export const createAccessToken = (user: IAuthUser) => {
   return sign(
     { userId: user.id, email: user.email },
     process.env.ACCESSTOKEN_SECRET!,
-    { expiresIn: "10m" }
+    { expiresIn: "15s" }
   );
 };
 

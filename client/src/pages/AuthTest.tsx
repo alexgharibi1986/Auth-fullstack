@@ -2,7 +2,9 @@ import React from "react";
 import { useAuthTestQuery } from "../generated/graphql";
 
 const AuthTest = () => {
-  const { data, error, loading } = useAuthTestQuery();
+  const { data, error, loading } = useAuthTestQuery({
+    fetchPolicy: "network-only",
+  });
 
   if (loading) {
     return <div>Loading</div>;
