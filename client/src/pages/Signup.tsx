@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Signup: FC = () => {
-  return <div></div>;
+  return <div>S</div>;
 };
 
 export default Signup;
