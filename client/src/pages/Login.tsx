@@ -1,10 +1,12 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import AuthContext from "../context/auth/AuthContext";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../generated/graphql";
 
 const Login: FC = () => {
   const navigate = useNavigate();
+  const { setAccessToken } = useContext(AuthContext);
 
   const [login] = useLoginMutation();
 
@@ -20,6 +22,10 @@ const Login: FC = () => {
           email: values.email,
         },
       });
+
+      if (response && response.data) {
+        setAccessToken(response.data.login.accessToken);
+      }
 
       resetForm();
     },

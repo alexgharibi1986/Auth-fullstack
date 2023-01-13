@@ -51,11 +51,6 @@ export type Users = {
   id: Scalars['String'];
 };
 
-export type AlexTestQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AlexTestQuery = { __typename?: 'Query', alex: string };
-
 export type LoginMutationVariables = Exact<{
   password: Scalars['String'];
   email: Scalars['String'];
@@ -72,44 +67,17 @@ export type SigninMutationVariables = Exact<{
 
 export type SigninMutation = { __typename?: 'Mutation', signin: boolean };
 
+export type AuthTestQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AuthTestQuery = { __typename?: 'Query', authUserLists: string };
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'Users', id: string, email: string }> };
 
 
-export const AlexTestDocument = gql`
-    query alexTest {
-  alex
-}
-    `;
-
-/**
- * __useAlexTestQuery__
- *
- * To run a query within a React component, call `useAlexTestQuery` and pass it any options that fit your needs.
- * When your component renders, `useAlexTestQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAlexTestQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAlexTestQuery(baseOptions?: Apollo.QueryHookOptions<AlexTestQuery, AlexTestQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AlexTestQuery, AlexTestQueryVariables>(AlexTestDocument, options);
-      }
-export function useAlexTestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AlexTestQuery, AlexTestQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AlexTestQuery, AlexTestQueryVariables>(AlexTestDocument, options);
-        }
-export type AlexTestQueryHookResult = ReturnType<typeof useAlexTestQuery>;
-export type AlexTestLazyQueryHookResult = ReturnType<typeof useAlexTestLazyQuery>;
-export type AlexTestQueryResult = Apollo.QueryResult<AlexTestQuery, AlexTestQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($password: String!, $email: String!) {
   login(password: $password, email: $email) {
@@ -176,6 +144,38 @@ export function useSigninMutation(baseOptions?: Apollo.MutationHookOptions<Signi
 export type SigninMutationHookResult = ReturnType<typeof useSigninMutation>;
 export type SigninMutationResult = Apollo.MutationResult<SigninMutation>;
 export type SigninMutationOptions = Apollo.BaseMutationOptions<SigninMutation, SigninMutationVariables>;
+export const AuthTestDocument = gql`
+    query AuthTest {
+  authUserLists
+}
+    `;
+
+/**
+ * __useAuthTestQuery__
+ *
+ * To run a query within a React component, call `useAuthTestQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAuthTestQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAuthTestQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAuthTestQuery(baseOptions?: Apollo.QueryHookOptions<AuthTestQuery, AuthTestQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AuthTestQuery, AuthTestQueryVariables>(AuthTestDocument, options);
+      }
+export function useAuthTestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthTestQuery, AuthTestQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AuthTestQuery, AuthTestQueryVariables>(AuthTestDocument, options);
+        }
+export type AuthTestQueryHookResult = ReturnType<typeof useAuthTestQuery>;
+export type AuthTestLazyQueryHookResult = ReturnType<typeof useAuthTestLazyQuery>;
+export type AuthTestQueryResult = Apollo.QueryResult<AuthTestQuery, AuthTestQueryVariables>;
 export const UsersDocument = gql`
     query Users {
   users {
