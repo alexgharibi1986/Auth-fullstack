@@ -1,14 +1,24 @@
 import { FC } from "react";
 import { useFormik } from "formik";
+import { useSigninMutation } from "../generated/graphql";
 
 const Signup: FC = () => {
+  const [signup] = useSigninMutation();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
+    onSubmit: async (values, { resetForm }) => {
+      const response = await signup({
+        variables: {
+          password: values.password,
+          email: values.email,
+        },
+      });
+
+      console.log(response);
       resetForm();
     },
   });

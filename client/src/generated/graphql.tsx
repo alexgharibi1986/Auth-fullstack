@@ -56,6 +56,14 @@ export type AlexTestQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AlexTestQuery = { __typename?: 'Query', alex: string };
 
+export type SigninMutationVariables = Exact<{
+  password: Scalars['String'];
+  email: Scalars['String'];
+}>;
+
+
+export type SigninMutation = { __typename?: 'Mutation', signin: boolean };
+
 
 export const AlexTestDocument = gql`
     query alexTest {
@@ -89,3 +97,35 @@ export function useAlexTestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AlexTestQueryHookResult = ReturnType<typeof useAlexTestQuery>;
 export type AlexTestLazyQueryHookResult = ReturnType<typeof useAlexTestLazyQuery>;
 export type AlexTestQueryResult = Apollo.QueryResult<AlexTestQuery, AlexTestQueryVariables>;
+export const SigninDocument = gql`
+    mutation Signin($password: String!, $email: String!) {
+  signin(password: $password, email: $email)
+}
+    `;
+export type SigninMutationFn = Apollo.MutationFunction<SigninMutation, SigninMutationVariables>;
+
+/**
+ * __useSigninMutation__
+ *
+ * To run a mutation, you first call `useSigninMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSigninMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signinMutation, { data, loading, error }] = useSigninMutation({
+ *   variables: {
+ *      password: // value for 'password'
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useSigninMutation(baseOptions?: Apollo.MutationHookOptions<SigninMutation, SigninMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SigninMutation, SigninMutationVariables>(SigninDocument, options);
+      }
+export type SigninMutationHookResult = ReturnType<typeof useSigninMutation>;
+export type SigninMutationResult = Apollo.MutationResult<SigninMutation>;
+export type SigninMutationOptions = Apollo.BaseMutationOptions<SigninMutation, SigninMutationVariables>;
