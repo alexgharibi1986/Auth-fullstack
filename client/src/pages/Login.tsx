@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import AuthContext from "../context/auth/AuthContext";
 import { useFormik } from "formik";
-import { setAccessToken } from "../accessToken";
+import { setAccessToken } from "../auth/accessToken";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../generated/graphql";
 
