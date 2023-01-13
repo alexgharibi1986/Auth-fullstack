@@ -13,11 +13,15 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 
-app.use(cors());
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
 
 app.post("/token_refresh", refreshToken);
 
@@ -34,7 +38,7 @@ app.post("/token_refresh", refreshToken);
 
     await apolloServer.start();
 
-    apolloServer.applyMiddleware({ app });
+    apolloServer.applyMiddleware({ app, cors: false });
 
     app.listen(5000, () => {
       console.log("Server started");

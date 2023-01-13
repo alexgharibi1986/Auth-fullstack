@@ -1,8 +1,11 @@
 import { FC } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { useSigninMutation } from "../generated/graphql";
 
 const Signup: FC = () => {
+  const navigate = useNavigate();
+
   const [signup] = useSigninMutation();
 
   const formik = useFormik({
@@ -11,14 +14,14 @@ const Signup: FC = () => {
       password: "",
     },
     onSubmit: async (values, { resetForm }) => {
-      const response = await signup({
+      await signup({
         variables: {
           password: values.password,
           email: values.email,
         },
       });
+      navigate("/");
 
-      console.log(response);
       resetForm();
     },
   });
