@@ -18,7 +18,7 @@ import { sendRefreshToken } from "./util/sendRefreshToken";
 export class UserResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
-  authUserLists(@Ctx() { payload }: Context) {
+  authUser(@Ctx() { payload }: Context) {
     return `Auth routes test, userId: ${payload!.userId}`;
   }
 

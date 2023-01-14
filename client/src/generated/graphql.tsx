@@ -41,8 +41,7 @@ export type MutationSigninArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  alex: Scalars['String'];
-  authUserLists: Scalars['String'];
+  authUser: Scalars['String'];
   users: Array<Users>;
 };
 
@@ -76,7 +75,7 @@ export type SigninMutation = { __typename?: 'Mutation', signin: boolean };
 export type AuthTestQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AuthTestQuery = { __typename?: 'Query', authUserLists: string };
+export type AuthTestQuery = { __typename?: 'Query', authUser: string };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -182,7 +181,7 @@ export type SigninMutationResult = Apollo.MutationResult<SigninMutation>;
 export type SigninMutationOptions = Apollo.BaseMutationOptions<SigninMutation, SigninMutationVariables>;
 export const AuthTestDocument = gql`
     query AuthTest {
-  authUserLists
+  authUser
 }
     `;
 

@@ -6,7 +6,7 @@ export const isAuth: MiddlewareFn<Context> = ({ context }, next) => {
   const authorization = context.req.headers["authorization"];
 
   if (!authorization) {
-    throw new Error("not authenticated");
+    throw new Error("Not authenticated");
   }
 
   try {
@@ -14,7 +14,7 @@ export const isAuth: MiddlewareFn<Context> = ({ context }, next) => {
     const paylaod = verify(token, process.env.ACCESSTOKEN_SECRET!);
     context.payload = paylaod as { userId: string };
   } catch (err) {
-    throw new Error("not authenticated!!");
+    throw new Error("Not authenticated!!");
   }
 
   return next();

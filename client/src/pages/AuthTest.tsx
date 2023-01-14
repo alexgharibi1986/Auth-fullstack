@@ -1,4 +1,4 @@
-import React from "react";
+import ErrorBox from "../components/ErrorBox";
 import { useAuthTestQuery } from "../generated/graphql";
 
 const AuthTest = () => {
@@ -9,11 +9,13 @@ const AuthTest = () => {
   if (loading) {
     return <div>Loading</div>;
   }
-  if (error) {
-    console.log(error);
-    return <div>error</div>;
-  }
-  return <div>{data?.authUserLists}</div>;
+
+  return (
+    <div className="ml-4">
+      <div className="text-gray-700 text-sm font-bold">{data?.authUser}</div>
+      {error && <ErrorBox message={error.message} />}
+    </div>
+  );
 };
 
 export default AuthTest;
