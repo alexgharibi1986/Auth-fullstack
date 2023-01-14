@@ -22,7 +22,7 @@ describe("Sign up", () => {
     );
   });
 
-  it("renders the login page", async () => {
+  it("renders the signup page", async () => {
     expect(screen.getByText("Submit")).toBeTruthy();
   });
 
