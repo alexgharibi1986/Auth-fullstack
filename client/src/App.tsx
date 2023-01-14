@@ -6,6 +6,7 @@ import AuthTest from "./pages/AuthTest";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ROUTES from "./constant/ROUTES";
 
 const App: FC = () => {
   const [loading, setLoading] = useState(true);
@@ -23,10 +24,10 @@ const App: FC = () => {
         <Navigation />
       </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/auth" element={<AuthTest />} />
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.SIGN_UP} element={<Signup />} />
+        <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route path={ROUTES.AUTH_TEST} element={<AuthTest />} />
       </Routes>
     </BrowserRouter>
   );
