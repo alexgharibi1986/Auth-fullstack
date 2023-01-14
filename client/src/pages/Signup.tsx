@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useSigninMutation } from "../generated/graphql";
+import { useSignupMutation } from "../generated/graphql";
 import { FormValidation } from "../validation/FormValidation";
 import ROUTES from "../constant/ROUTES";
 import Input from "../components/Input";
@@ -9,7 +9,7 @@ import Input from "../components/Input";
 const Signup: FC = () => {
   const navigate = useNavigate();
 
-  const [signup] = useSigninMutation();
+  const [signup] = useSignupMutation();
 
   const formik = useFormik({
     initialValues: {

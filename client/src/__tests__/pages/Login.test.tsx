@@ -1,10 +1,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import {
-  mockLoginMutation,
-  mockEmptyLoginMutation,
-} from "../../mocks/useLoginMutation";
+import { mockLoginMutation } from "../../mocks/useLoginMutation";
 import Login from "../../pages/Login";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/auth/AuthContext";
@@ -16,12 +13,12 @@ const mockAuthValues = {
 };
 const navigate = jest.fn();
 
-const formSubmit = (email: string, password: string) => {
+export const formSubmit = (email: string, password: string, button: string) => {
   const emailBox = screen.getByPlaceholderText("Email");
   const passwordBox = screen.getByPlaceholderText("Password");
   fireEvent.change(emailBox, { target: { value: email } });
   fireEvent.change(passwordBox, { target: { value: password } });
-  fireEvent.click(screen.getByText("Login"));
+  fireEvent.click(screen.getByText(button));
 };
 
 describe("Login", () => {
@@ -44,7 +41,7 @@ describe("Login", () => {
   });
 
   it("submits the for with correct values", async () => {
-    formSubmit("alex@test.com", "Password1!");
+    formSubmit("alex@test.com", "Password1!", "Login");
 
     await waitFor(() => {
       expect(navigate).toHaveBeenCalledWith("/auth");
@@ -54,13 +51,13 @@ describe("Login", () => {
   });
 
   it("does not submit with wrong email", async () => {
-    formSubmit("alex.com", "Password1!");
+    formSubmit("alex.com", "Password1!", "Login");
 
     expect(await screen.findByText("Invalid email address")).toBeTruthy();
   });
 
   it("does not submit with wrong password", async () => {
-    formSubmit("alex@test.com", "Pass");
+    formSubmit("alex@test.com", "Pass", "Login");
 
     expect(
       await screen.findByText(

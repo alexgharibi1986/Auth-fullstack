@@ -18,16 +18,3 @@ export const mockLoginMutation = [
     },
   },
 ];
-
-export const mockEmptyLoginMutation = [
-  {
-    request: {
-      query: LoginDocument,
-      variables: {
-        password: "Password1!",
-        email: "alex@test.com",
-      },
-    },
-    result: {},
-  },
-];
