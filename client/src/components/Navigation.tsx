@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getAccessToken, setAccessToken } from "../auth/accessToken";
+import { setAccessToken } from "../auth/accessToken";
 import ROUTES from "../constant/ROUTES";
 import AuthContext from "../context/auth/AuthContext";
 import { useLogoutMutation } from "../generated/graphql";

@@ -47,7 +47,7 @@ const Signup: FC = () => {
         />
         <label
           className="block text-gray-700 text-sm font-bold mb-2 mt-10"
-          htmlFor="name"
+          htmlFor="password"
         >
           Password
         </label>
