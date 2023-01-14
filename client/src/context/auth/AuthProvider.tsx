@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import { getAccessToken } from "../../auth/accessToken";
 import AuthContext from "./AuthContext";
 
 interface AuthProviderProps {
@@ -7,6 +8,14 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const token = getAccessToken();
+
+    if (token) {
+      setIsAuth(true);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

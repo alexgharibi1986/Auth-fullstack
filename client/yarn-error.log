@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add -D @types/loadash
+  /usr/local/bin/node /usr/local/bin/yarn add -D @types/formik
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2floadash: Not found
+  Error: https://registry.yarnpkg.com/@types%2fformik: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:527:28)
@@ -42,8 +42,10 @@ npm manifest:
       "@types/react": "^18.0.0",
       "@types/react-dom": "^18.0.0",
       "apollo-boost": "^0.4.9",
+      "apollo-link-token-refresh": "^0.4.0",
       "formik": "^2.2.9",
       "graphql": "^16.6.0",
+      "jwt-decode": "^3.1.2",
       "lodash": "^4.17.21",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
@@ -84,6 +86,8 @@ npm manifest:
       "@graphql-codegen/typescript-operations": "^2.5.12",
       "@graphql-codegen/typescript-react-apollo": "^3.3.7",
       "@types/graphql": "^14.5.0",
+      "@types/jwt-decode": "^3.1.0",
+      "@types/lodash": "^4.14.191",
       "@types/react-router-dom": "^5.3.3",
       "tailwindcss": "^3.2.4",
       "ts-node": "^10.9.1"
@@ -2744,6 +2748,18 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
+  "@types/jwt-decode@^3.1.0":
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/@types/jwt-decode/-/jwt-decode-3.1.0.tgz#eb1b24f436962b8857beaf8addfd542de56670a2"
+    integrity sha512-tthwik7TKkou3mVnBnvVuHnHElbjtdbM63pdBCbZTirCt3WAdM73Y79mOri7+ljsS99ZVwUFZHLMxJuJnv/z1w==
+    dependencies:
+      jwt-decode "*"
+  
+  "@types/lodash@^4.14.191":
+    version "4.14.191"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
+    integrity sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==
+  
   "@types/mime@*":
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
@@ -3458,6 +3474,11 @@ Lockfile:
       apollo-link "^1.2.14"
       apollo-link-http-common "^0.2.16"
       tslib "^1.9.3"
+  
+  apollo-link-token-refresh@^0.4.0:
+    version "0.4.0"
+    resolved "https://registry.yarnpkg.com/apollo-link-token-refresh/-/apollo-link-token-refresh-0.4.0.tgz#5ba6c3f46509e64c95f20fb719b8abeddc09fad6"
+    integrity sha512-5P5nH//asgoz01r6tUYiBbHIuVwEEsBmA9WJ8LEiNtZcOq8AXdfR8aV4Pw/B86P3lRi1ykd8xyZLCHpLro9v+Q==
   
   apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.2.14:
     version "1.2.14"
@@ -7553,6 +7574,11 @@ Lockfile:
     dependencies:
       jwa "^1.4.1"
       safe-buffer "^5.0.1"
+  
+  jwt-decode@*, jwt-decode@^3.1.2:
+    version "3.1.2"
+    resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
+    integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
   
   kind-of@^6.0.2:
     version "6.0.3"
