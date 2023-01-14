@@ -23,7 +23,6 @@ const Login: FC = () => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (values, { resetForm }) => {
-      console.log(values);
       const response = await login({
         variables: {
           password: values.password,

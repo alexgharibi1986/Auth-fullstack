@@ -5,4 +5,7 @@
 import "@testing-library/jest-dom";
 
 //mock graphql api calls
-jest.mock("./generated/graphql");
+// jest.mock("./generated/graphql");
+
+//react-router-dom mock
+jest.mock("react-router-dom");
