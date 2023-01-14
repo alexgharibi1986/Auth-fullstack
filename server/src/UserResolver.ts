@@ -81,4 +81,11 @@ export class UserResolver {
       accessToken: createAccessToken(user),
     };
   }
+
+  @Mutation(() => Boolean)
+  async logout(@Ctx() { res }: Context) {
+    sendRefreshToken(res, "");
+
+    return true;
+  }
 }
