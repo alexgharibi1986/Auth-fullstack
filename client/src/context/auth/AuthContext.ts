@@ -2,13 +2,13 @@ import { createContext } from "react";
 import { noop } from "lodash";
 
 export interface AuthContextProps {
-  accessToken: string;
-  setAccessToken: (e: string) => void;
+  isAuth: boolean;
+  setIsAuth: (e: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({
-  accessToken: "",
-  setAccessToken: noop,
+  isAuth: false,
+  setIsAuth: noop,
 });
 
 export default AuthContext;

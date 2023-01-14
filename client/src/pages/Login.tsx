@@ -4,10 +4,11 @@ import { useFormik } from "formik";
 import { setAccessToken } from "../auth/accessToken";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../generated/graphql";
+import ROUTES from "../constant/ROUTES";
 
 const Login: FC = () => {
   const navigate = useNavigate();
-  // const { setAccessToken } = useContext(AuthContext);
+  const { setIsAuth } = useContext(AuthContext);
 
   const [login] = useLoginMutation();
 
@@ -26,6 +27,8 @@ const Login: FC = () => {
 
       if (response && response.data) {
         setAccessToken(response.data.login.accessToken);
+        setIsAuth(true);
+        navigate(ROUTES.AUTH_TEST);
       }
 
       resetForm();

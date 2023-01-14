@@ -6,13 +6,13 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [accessToken, setAccessToken] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
 
   return (
     <AuthContext.Provider
       value={{
-        accessToken,
-        setAccessToken,
+        isAuth,
+        setIsAuth,
       }}
     >
       {children}
