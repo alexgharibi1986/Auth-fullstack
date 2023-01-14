@@ -8,8 +8,8 @@ import {
 import { MockedProvider } from "@apollo/client/testing";
 import AuthTest from "../../pages/AuthTest";
 
-describe("Home page success state", () => {
-  it("renders the header and the email with id", async () => {
+describe("Auth page success state", () => {
+  it("renders the auth user", async () => {
     render(
       <MockedProvider mocks={mockAuthTestQuery} addTypename={false}>
         <AuthTest />
@@ -19,8 +19,8 @@ describe("Home page success state", () => {
   });
 });
 
-describe("Home page error state", () => {
-  it("renders the error with header", async () => {
+describe("Auth page error state", () => {
+  it("renders the error", async () => {
     render(
       <MockedProvider mocks={mockAuthTestQueryError} addTypename={false}>
         <AuthTest />
@@ -30,14 +30,13 @@ describe("Home page error state", () => {
   });
 });
 
-describe("Home page loading state", () => {
-  it("renders the loading without header", () => {
+describe("Auth page loading state", () => {
+  it("renders the loading", () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
         <AuthTest />
       </MockedProvider>
     );
     expect(screen.getByText("Loading...")).toBeTruthy();
-    expect(screen.queryByText("Registered Users:")).toBeFalsy();
   });
 });

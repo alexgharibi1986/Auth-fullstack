@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setAccessToken } from "../auth/accessToken";
 import ROUTES from "../constant/ROUTES";
 import AuthContext from "../context/auth/AuthContext";
@@ -28,18 +28,18 @@ const Navigation = () => {
   return (
     <nav className="p-5">
       <div className="flex flex-row justify-end space-x-6 items-center">
-        <Link className={className(ROUTES.HOME)} to={ROUTES.HOME}>
+        <a className={className(ROUTES.HOME)} href={ROUTES.HOME}>
           Home
-        </Link>
-        <Link className={className(ROUTES.SIGN_UP)} to={ROUTES.SIGN_UP}>
+        </a>
+        <a className={className(ROUTES.SIGN_UP)} href={ROUTES.SIGN_UP}>
           Sign up
-        </Link>
-        <Link className={className(ROUTES.LOGIN)} to={ROUTES.LOGIN}>
+        </a>
+        <a className={className(ROUTES.LOGIN)} href={ROUTES.LOGIN}>
           Login
-        </Link>
-        <Link className={className(ROUTES.AUTH_TEST)} to={ROUTES.AUTH_TEST}>
+        </a>
+        <a className={className(ROUTES.AUTH_TEST)} href={ROUTES.AUTH_TEST}>
           Auth Test
-        </Link>
+        </a>
 
         {isAuth && (
           <button
