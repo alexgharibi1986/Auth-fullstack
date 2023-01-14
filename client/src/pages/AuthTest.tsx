@@ -1,4 +1,5 @@
 import ErrorBox from "../components/ErrorBox";
+import Spinner from "../components/Spinner";
 import { useAuthTestQuery } from "../generated/graphql";
 
 const AuthTest = () => {
@@ -7,7 +8,7 @@ const AuthTest = () => {
   });
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner className="ml-32 mt-44" />;
   }
 
   return (
