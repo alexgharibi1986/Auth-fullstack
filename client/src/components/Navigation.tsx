@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { setAccessToken } from "../auth/accessToken";
+import ROUTES from "../constant/ROUTES";
 import { useLogoutMutation } from "../generated/graphql";
 
 const Navigation = () => {
   const [logout, { client }] = useLogoutMutation();
+  const location = useLocation();
+
+  const className = (route: string) => {
+    if (location.pathname === route) {
+      return "text-red-500";
+    }
+    return "hover:text-blue-500";
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -12,13 +21,23 @@ const Navigation = () => {
   };
 
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/signup">Sign up</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/auth">Auth Test</Link>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <nav className="p-5">
+      <div className="flex flex-row justify-end space-x-6">
+        <Link className={className(ROUTES.HOME)} to={ROUTES.HOME}>
+          Home
+        </Link>
+        <Link className={className(ROUTES.SIGN_UP)} to={ROUTES.SIGN_UP}>
+          Sign up
+        </Link>
+        <Link className={className(ROUTES.LOGIN)} to={ROUTES.LOGIN}>
+          Login
+        </Link>
+        <Link className={className(ROUTES.AUTH_TEST)} to={ROUTES.AUTH_TEST}>
+          Auth Test
+        </Link>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    </nav>
   );
 };
 
