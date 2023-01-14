@@ -10,7 +10,7 @@ import { getAccessToken, setAccessToken } from "../auth/accessToken";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri: process.env.REACT_APP_GRAPHQL_API,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -46,7 +46,7 @@ const refreshToken = new TokenRefreshLink({
     }
   },
   fetchAccessToken: () => {
-    return fetch("http://localhost:5000/token_refresh", {
+    return fetch(process.env.REACT_APP_TOKEN_REFRESH!, {
       method: "POST",
       credentials: "include",
     });

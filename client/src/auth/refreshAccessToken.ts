@@ -1,7 +1,7 @@
 import { setAccessToken } from "./accessToken";
 
 export const refreshAccessToken = (setLoading: (e: boolean) => void) => {
-  fetch("http://localhost:5000/token_refresh", {
+  fetch(process.env.REACT_APP_TOKEN_REFRESH!, {
     method: "POST",
     credentials: "include",
   })

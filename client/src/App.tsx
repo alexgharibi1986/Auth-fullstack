@@ -16,6 +16,8 @@ const App: FC = () => {
     refreshAccessToken(setLoading);
   }, []);
 
+  console.log(process.env.REACT_APP_TOKEN_REFRESH!);
+
   if (loading) {
     return <Spinner className="ml-32 mt-44" />;
   }
