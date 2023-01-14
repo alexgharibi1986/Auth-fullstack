@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ROUTES from "./constant/ROUTES";
+import Spinner from "./components/Spinner";
 
 const App: FC = () => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const App: FC = () => {
   }, []);
 
   if (loading) {
-    return <div>loading ...</div>;
+    return <Spinner className="ml-32 mt-44" />;
   }
   return (
     <BrowserRouter>
