@@ -17,11 +17,6 @@ import { sendRefreshToken } from "./util/sendRefreshToken";
 @Resolver()
 export class UserResolver {
   @Query(() => String)
-  alex() {
-    return "Test";
-  }
-
-  @Query(() => String)
   @UseMiddleware(isAuth)
   authUserLists(@Ctx() { payload }: Context) {
     return `Auth routes test, userId: ${payload!.userId}`;
@@ -30,6 +25,9 @@ export class UserResolver {
   @Query(() => [Users])
   async users() {
     const users = await AuthUsers.find();
+    if (!users) {
+      throw new Error("No users, Please sign up ");
+    }
     return users;
   }
 
