@@ -7,12 +7,13 @@ import { useLoginMutation } from "../generated/graphql";
 import ROUTES from "../constant/ROUTES";
 import { FormValidation } from "../validation/FormValidation";
 import Input from "../components/Input";
+import ErrorBox from "../components/ErrorBox";
 
 const Login: FC = () => {
   const navigate = useNavigate();
   const { setIsAuth } = useContext(AuthContext);
 
-  const [login] = useLoginMutation();
+  const [login, { error }] = useLoginMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -67,6 +68,7 @@ const Login: FC = () => {
           Login
         </button>
       </form>
+      {error && <ErrorBox message={error.message} />}
     </div>
   );
 };

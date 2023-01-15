@@ -18,3 +18,16 @@ export const mockLoginMutation = [
     },
   },
 ];
+
+export const mockLoginMutationError = [
+  {
+    request: {
+      query: LoginDocument,
+      variables: {
+        password: "Password1!",
+        email: "alex@test.com",
+      },
+    },
+    error: new Error("API Error"),
+  },
+];
