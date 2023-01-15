@@ -36,18 +36,23 @@ export class UserResolver {
   @UseMiddleware(validation)
   async signin(@Arg("email") email: string, @Arg("password") password: string) {
     try {
+      const user = await AuthUsers.findOne({
+        email: email,
+      });
+
+      if (user) {
+        throw new Error("User exists, please login");
+      }
       const hashedPassword = await hash(password, 12);
 
-      const authUsers = new AuthUsers({
+      const authUser = new AuthUsers({
         email: email,
         password: hashedPassword,
       });
 
-      await authUsers.save();
+      await authUser.save();
     } catch (err) {
-      console.log(err);
-
-      return false;
+      return err;
     }
 
     return true;
