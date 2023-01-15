@@ -5,11 +5,12 @@ import { useSignupMutation } from "../generated/graphql";
 import { FormValidation } from "../validation/FormValidation";
 import ROUTES from "../constant/ROUTES";
 import Input from "../components/Input";
+import ErrorBox from "../components/ErrorBox";
 
 const Signup: FC = () => {
   const navigate = useNavigate();
 
-  const [signup] = useSignupMutation();
+  const [signup, { error }] = useSignupMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -57,6 +58,7 @@ const Signup: FC = () => {
           Submit
         </button>
       </form>
+      {error && <ErrorBox message={error.message} />}
     </div>
   );
 };

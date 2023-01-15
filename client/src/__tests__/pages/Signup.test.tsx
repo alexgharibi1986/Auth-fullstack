@@ -1,7 +1,10 @@
 /* eslint-disable testing-library/no-render-in-setup */
 
 import { render, screen, waitFor } from "@testing-library/react";
-import { mockSignupMutation } from "../../mocks/useSignupMutation";
+import {
+  mockSignupMutation,
+  mockSignupMutationError,
+} from "../../mocks/useSignupMutation";
 import { formSubmit } from "./Login.test";
 import Signup from "../../pages/Signup";
 import { useNavigate } from "react-router-dom";
@@ -48,5 +51,21 @@ describe("Sign up", () => {
         "Password must be between 8-20 characters, at least 1 number and 1 special character."
       )
     ).toBeTruthy();
+  });
+});
+
+describe("Error state", () => {
+  it("shows the error from server", async () => {
+    render(
+      <MockedProvider mocks={mockSignupMutationError} addTypename={false}>
+        <Signup />
+      </MockedProvider>
+    );
+
+    formSubmit("alex@test.com", "Password1!", "Submit");
+
+    await waitFor(() => {
+      expect(screen.getByText("API Error")).toBeTruthy();
+    });
   });
 });
