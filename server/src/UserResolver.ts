@@ -13,6 +13,7 @@ import { Context } from "./Types/Context";
 import { isAuth } from "./middleware/isAuth";
 import { createRefreshToken, createAccessToken } from "./util/auth";
 import { sendRefreshToken } from "./util/sendRefreshToken";
+import { validation } from "./middleware/validation";
 
 @Resolver()
 export class UserResolver {
@@ -32,6 +33,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseMiddleware(validation)
   async signin(@Arg("email") email: string, @Arg("password") password: string) {
     try {
       const hashedPassword = await hash(password, 12);
@@ -52,6 +54,7 @@ export class UserResolver {
   }
 
   @Mutation(() => LoginResponse)
+  @UseMiddleware(validation)
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
